@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contracts - Blockchain Academy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">⬡</span>
+                Blockchain Academy
+            </a>
+            <ul class="nav-links">
+                <li><a href="what-is-blockchain.html">What is Blockchain?</a></li>
+                <li><a href="components.html">Components</a></li>
+                <li><a href="smart-contracts.html">Smart Contracts</a></li>
+                <li><a href="how-it-works.html">How it Works</a></li>
+                <li><a href="use-cases.html">Use Cases</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="content-page">
+        <div class="content-header">
+            <div class="container">
+                <span class="badge">Module 01</span>
+                <h1>Smart Contracts</h1>
+                <p>Self-executing programs that automatically enforce and execute agreements when predetermined conditions are met.</p>
+            </div>
+        </div>
+
+        <div class="content-body">
+            <section class="content-section">
+                <h2>What is a Smart Contract?</h2>
+                <p>A <strong>smart contract</strong> is a self-executing computer program stored on a blockchain that automatically enforces the terms of an agreement when predetermined conditions are met. Think of it as a digital contract that automatically executes without requiring intermediaries.</p>
+
+                <div class="info-box">
+                    <strong>📝 Definition:</strong> Smart contracts are deterministic programs that run on a blockchain and execute predefined actions automatically when specific conditions are satisfied.
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>History & Origin</h2>
+                <p>The concept of smart contracts was first proposed by Nick Szabo in 1994, long before blockchain technology existed. He envisioned digital protocols that could execute contractual terms automatically.</p>
+
+                <h3>Evolution Timeline:</h3>
+                <ul>
+                    <li><strong>1994:</strong> Nick Szabo conceptualizes smart contracts</li>
+                    <li><strong>2015:</strong> Ethereum launches, bringing smart contracts to life</li>
+                    <li><strong>2017:</strong> ICO boom - thousands of smart contracts created</li>
+                    <li><strong>2020:</strong> DeFi summer - smart contracts power financial applications</li>
+                    <li><strong>2021:</strong> NFT explosion - smart contracts enable digital art ownership</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>How Smart Contracts Work</h2>
+                <p>Smart contracts work on a simple "if-then" logic. When the conditions written in the code are triggered, the contract executes automatically.</p>
+
+                <h3>The Lifecycle of a Smart Contract:</h3>
+                <ol>
+                    <li><strong>Creation:</strong> Developer writes the contract code and deploys it to the blockchain</li>
+                    <li><strong>Trigger:</strong> An event occurs that meets the contract's conditions</li>
+                    <li><strong>Execution:</strong> The contract automatically executes the predefined actions</li>
+                    <li><strong>Verification:</strong> Nodes validate the execution and update the blockchain state</li>
+                    <li><strong>Completion:</strong> The transaction is recorded permanently on the blockchain</li>
+                </ol>
+
+                <div class="code-block">
+                    <code>
+// Simple Example: Crowdfunding Contract
+contract Crowdfunding {
+    address public creator;
+    uint public goal;
+    uint public deadline;
+    mapping(address => uint) public contributions;
+
+    function contribute() public payable {
+        contributions[msg.sender] += msg.value;
+    }
+
+    function checkGoalReached() public {
+        if (address(this).balance >= goal) {
+            // Transfer funds to creator
+            payable(creator).transfer(address(this).balance);
+        }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Key Characteristics</h2>
+
+                <h3>1. Autonomy</h3>
+                <p>Once deployed, smart contracts run automatically without human intervention. There's no need for brokers, lawyers, or other intermediaries.</p>
+
+                <h3>2. Transparency</h3>
+                <p>The code is visible to everyone on the public blockchain. Users can verify the logic before interacting with the contract.</p>
+
+                <h3>3. Immutability</h3>
+                <p>Once deployed, the code cannot be changed. This ensures the contract behaves exactly as written, but also means bugs cannot be easily fixed.</p>
+
+                <h3>4. Speed</h3>
+                <p>Smart contracts execute instantly when conditions are met. Traditional contracts can take days or weeks to process.</p>
+
+                <h3>5. Accuracy</h3>
+                <p>Automated execution eliminates human errors in contract fulfillment.</p>
+            </section>
+
+            <section class="content-section">
+                <h2>Popular Smart Contract Platforms</h2>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Platform</th>
+                            <th>Language</th>
+                            <th>Use Cases</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ethereum</td>
+                            <td>Solidity, Vyper</td>
+                            <td>DeFi, NFTs, DAOs</td>
+                        </tr>
+                        <tr>
+                            <td>Solana</td>
+                            <td>Rust, C, C++</td>
+                            <td>High-speed dApps</td>
+                        </tr>
+                        <tr>
+                            <td>Cardano</td>
+                            <td>Plutus, Marlowe</td>
+                            <td>Enterprise, Finance</td>
+                        </tr>
+                        <tr>
+                            <td>Polygon</td>
+                            <td>Solidity</td>
+                            <td>Scaling, Gaming</td>
+                        </tr>
+                        <tr>
+                            <td>BNB Chain</td>
+                            <td>Solidity</td>
+                            <td>Trading, Gaming</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h2>Solidity Programming</h2>
+                <p><strong>Solidity</strong> is the most popular programming language for writing smart contracts on Ethereum and EVM-compatible blockchains.</p>
+
+                <h3>Basic Solidity Contract Structure:</h3>
+                <div class="code-block">
+                    <code>
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SimpleStorage {
+    uint256 private storedData;
+
+    event ValueChanged(uint256 newValue);
+
+    function set(uint256 x) public {
+        storedData = x;
+        emit ValueChanged(x);
+    }
+
+    function get() public view returns (uint256) {
+        return storedData;
+    }
+}
+                    </code>
+                </div>
+
+                <h3>Key Solidity Concepts:</h3>
+                <ul>
+                    <li><strong>Pragma:</strong> Compiler version specification</li>
+                    <li><strong>Contract:</strong> Similar to a class in object-oriented languages</li>
+                    <li><strong>Functions:</strong> Public or private methods</li>
+                    <li><strong>State Variables:</strong> Data stored permanently on blockchain</li>
+                    <li><strong>Events:</strong> Logging mechanism for blockchain events</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Real-World Examples</h2>
+
+                <h3>1. Decentralized Finance (DeFi)</h3>
+                <p>Smart contracts power lending protocols like Aave and Compound, enabling users to lend and borrow crypto without intermediaries.</p>
+
+                <h3>2. NFTs (Non-Fungible Tokens)</h3>
+                <p>NFT contracts like ERC-721 and ERC-1155 manage ownership and transfer of unique digital assets.</p>
+
+                <h3>3. Decentralized Exchanges (DEX)</h3>
+                <p>Platforms like Uniswap use smart contracts to enable trustless token swaps directly between users.</p>
+
+                <h3>4. DAOs</h3>
+                <p>Decentralized Autonomous Organizations use smart contracts for governance, allowing token holders to vote on proposals.</p>
+
+                <div class="info-box warning">
+                    <strong>⚠️ Important:</strong> Smart contracts are immutable - once deployed, bugs cannot be fixed. Always audit smart contract code before interacting with it.
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Benefits & Limitations</h2>
+
+                <h3>Benefits:</h3>
+                <ul>
+                    <li>Eliminates middlemen and reduces costs</li>
+                    <li>Provides transparency and trust</li>
+                    <li>Enables 24/7 automation</li>
+                    <li>Creates programmable money and assets</li>
+                    <li>Enables new business models (DeFi, NFTs)</li>
+                </ul>
+
+                <h3>Limitations:</h3>
+                <ul>
+                    <li>Immutability makes bug fixes difficult</li>
+                    <li>Cannot access external data without oracles</li>
+                    <li>Smart contract risks (hacks, exploits)</li>
+                    <li>Scalability challenges on popular blockchains</li>
+                    <li>Legal enforceability varies by jurisdiction</li>
+                </ul>
+            </section>
+
+            <div class="page-nav">
+                <a href="components.html">← Previous: Components</a>
+                <a href="how-it-works.html">Next: How it Works →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Blockchain Academy - Module 01</p>
+            <p>Smart Contracts</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

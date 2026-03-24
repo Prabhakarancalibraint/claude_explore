@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Components - Blockchain Academy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">⬡</span>
+                Blockchain Academy
+            </a>
+            <ul class="nav-links">
+                <li><a href="what-is-blockchain.html">What is Blockchain?</a></li>
+                <li><a href="components.html">Components</a></li>
+                <li><a href="smart-contracts.html">Smart Contracts</a></li>
+                <li><a href="how-it-works.html">How it Works</a></li>
+                <li><a href="use-cases.html">Use Cases</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="content-page">
+        <div class="content-header">
+            <div class="container">
+                <span class="badge">Module 01</span>
+                <h1>Blockchain Components</h1>
+                <p>Understanding the building blocks that make blockchain technology work - from blocks to nodes, consensus to cryptography.</p>
+            </div>
+        </div>
+
+        <div class="content-body">
+            <section class="content-section">
+                <h2>What is a Block?</h2>
+                <p>A <strong>block</strong> is the fundamental unit of a blockchain. It serves as a container that stores a batch of verified transactions. Each block contains three main elements:</p>
+
+                <h3>Block Structure:</h3>
+                <ul>
+                    <li><strong>Block Header:</strong> Contains metadata including version, previous block hash, merkle root, timestamp, difficulty target, and nonce</li>
+                    <li><strong>Block Body:</strong> Contains the actual transaction data</li>
+                    <li><strong>Block Hash:</strong> A unique digital fingerprint generated from the block content</li>
+                </ul>
+
+                <div class="code-block">
+                    <code>
+Block Structure:
+├── Header
+│   ├── Version
+│   ├── Previous Block Hash (32 bytes)
+│   ├── Merkle Root (32 bytes)
+│   ├── Timestamp
+│   ├── Difficulty Target
+│   └── Nonce (4 bytes)
+└── Body
+    └── Transactions List
+                    </code>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Cryptographic Hash Functions</h2>
+                <p>Hash functions are the backbone of blockchain security. They take any input and produce a fixed-size output (hash). A good hash function has these properties:</p>
+
+                <ul>
+                    <li><strong>Deterministic:</strong> Same input always produces same output</li>
+                    <li><strong>Fast Computation:</strong> Hash can be calculated quickly</li>
+                    <li><strong>Pre-image Resistance:</strong> Cannot reverse-engineer input from hash</li>
+                    <li><strong>Collision Resistance:</strong> Two different inputs unlikely to produce same hash</li>
+                    <li><strong>Avalanche Effect:</strong> Small input change produces drastically different hash</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>🔐 SHA-256 Example:</strong><br>
+                    Input: "Hello Blockchain" → Hash: 1c88c8d98e4f7c9b2a5e3d4f6c8b1a9e4d7c3f6b8a1c5e2d4f6c8b1a9e4d7c3<br>
+                    Change to "hello blockchain" → Complete different hash!
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Merkle Trees</h2>
+                <p>A <strong>Merkle tree</strong> (or hash tree) is a data structure that efficiently organizes and verifies large sets of transaction data. It groups all transactions in pairs and repeatedly hashes them until a single hash remains - the <strong>Merkle root</strong>.</p>
+
+                <h3>Why Merkle Trees Matter:</h3>
+                <ul>
+                    <li>Efficient and secure verification of large data sets</li>
+                    <li>Enables Simplified Payment Verification (SPV)</li>
+                    <li>Allows light nodes to verify transactions without downloading entire blockchain</li>
+                    <li>Provides data integrity verification</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Nodes & Network</h2>
+                <p>Nodes are computers that participate in the blockchain network by maintaining a copy of the distributed ledger and following consensus rules.</p>
+
+                <h3>Types of Nodes:</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Node Type</th>
+                            <th>Description</th>
+                            <th>Storage Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Full Node</td>
+                            <td>Stores entire blockchain, validates all transactions and blocks</td>
+                            <td>100GB+</td>
+                        </tr>
+                        <tr>
+                            <td>Light Node</td>
+                            <td>Stores only block headers, verifies transactions via Merkle proofs</td>
+                            <td>~50MB</td>
+                        </tr>
+                        <tr>
+                            <td>Mining Node</td>
+                            <td>Full node + performs mining/proof-of-work calculations</td>
+                            <td>100GB+</td>
+                        </tr>
+                        <tr>
+                            <td>Archive Node</td>
+                            <td>Stores full history, provides historical data queries</td>
+                            <td>500GB+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h2>Consensus Mechanisms</h2>
+                <p>Consensus mechanisms are protocols that ensure all nodes in a blockchain network agree on a single version of the truth. They prevent double-spending and maintain network integrity.</p>
+
+                <h3>1. Proof of Work (PoW)</h3>
+                <p>Miners compete to solve complex mathematical puzzles. The first to solve it gets to add the next block. Used by Bitcoin and Ethereum (historically).</p>
+                <ul>
+                    <li><strong>Pros:</strong> Highly secure, battle-tested</li>
+                    <li><strong>Cons:</strong> Energy-intensive, slower transactions</li>
+                </ul>
+
+                <h3>2. Proof of Stake (PoS)</h3>
+                <p>Validators are chosen based on the amount of cryptocurrency they stake as collateral. More stake = higher chance of being selected.</p>
+                <ul>
+                    <li><strong>Pros:</strong> Energy-efficient, faster transactions</li>
+                    <li><strong>Cons:</strong> Rich-get-richer problem, requires significant stake</li>
+                </ul>
+
+                <h3>3. Proof of Authority (PoA)</h3>
+                <p>Block validators are identified and approved entities. Fast and efficient but less decentralized.</p>
+                <ul>
+                    <li><strong>Pros:</strong> Fast, low resource requirements</li>
+                    <li><strong>Cons:</strong> Centralized, requires trusted validators</li>
+                </ul>
+
+                <h3>4. Delegated Proof of Stake (DPoS)</h3>
+                <p>Token holders vote for a small number of delegates who validate blocks on their behalf.</p>
+
+                <div class="info-box">
+                    <strong>📊 Consensus Comparison:</strong> PoW is the most secure but slowest. PoS offers a balance between security and efficiency. PoA is fastest but least decentralized.
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Digital Signatures</h2>
+                <p>Digital signatures use public-key cryptography to authenticate transactions and prove ownership without revealing private keys.</p>
+
+                <h3>How It Works:</h3>
+                <ol>
+                    <li><strong>Private Key:</strong> Kept secret by the owner, used to sign transactions</li>
+                    <li><strong>Public Key:</strong> Shared with everyone, used to verify signatures</li>
+                    <li><strong>Signature:</strong> Mathematical proof generated using the private key</li>
+                    <li><strong>Verification:</strong> Anyone can verify the signature using the public key</li>
+                </ol>
+
+                <div class="info-box success">
+                    <strong>✓ Security:</strong> Even if someone knows your public key, they cannot derive your private key or forge your signature.
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Summary</h2>
+                <p>Understanding these components is essential for grasping how blockchain technology functions at a deeper level:</p>
+                <ul>
+                    <li><strong>Blocks</strong> contain and organize transaction data</li>
+                    <li><strong>Hash functions</strong> ensure data integrity and security</li>
+                    <li><strong>Merkle trees</strong> enable efficient data verification</li>
+                    <li><strong>Nodes</strong> maintain the network and validate transactions</li>
+                    <li><strong>Consensus mechanisms</strong> ensure agreement across the network</li>
+                    <li><strong>Digital signatures</strong> provide authentication and ownership</li>
+                </ul>
+            </section>
+
+            <div class="page-nav">
+                <a href="what-is-blockchain.html">← Previous: What is Blockchain?</a>
+                <a href="smart-contracts.html">Next: Smart Contracts →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Blockchain Academy - Module 01</p>
+            <p>Blockchain Components</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
