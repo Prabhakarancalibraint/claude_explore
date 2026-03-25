@@ -3,9 +3,12 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useEffect } from 'react'
 import { topics } from '../data/blockchainData'
+import { topicVideos, topicPracticeLinks } from '../data/videoPracticeData'
 import InteractiveExercise from '../components/InteractiveExercise'
 import Quiz from '../components/Quiz'
 import CodeBlock from '../components/CodeBlock'
+import VideoPlayer from '../components/VideoPlayer'
+import PracticeButton from '../components/PracticeButton'
 import useProgress from '../hooks/useProgress'
 
 function AnimatedSection({ children }) {
@@ -61,6 +64,10 @@ export default function TopicPage({ progress: progressHook }) {
   const completedTasks = topic.exercises?.[0]?.tasks?.map(t => t.id) || []
   const exerciseProgress = getExerciseProgress(topic.id)
 
+  // Get videos and practice links for this topic
+  const videos = topicVideos[topicId] || []
+  const practiceLinks = topicPracticeLinks[topicId] || []
+
   const handleTaskComplete = (exerciseId, taskId) => {
     completeExerciseTask(exerciseId, taskId)
   }
@@ -114,6 +121,20 @@ export default function TopicPage({ progress: progressHook }) {
             {section.code && <CodeBlock code={section.code} />}
           </AnimatedSection>
         ))}
+
+        {/* Video Section */}
+        {videos.length > 0 && (
+          <AnimatedSection>
+            <VideoPlayer videos={videos} />
+          </AnimatedSection>
+        )}
+
+        {/* Practice Links Section */}
+        {practiceLinks.length > 0 && (
+          <AnimatedSection>
+            <PracticeButton links={practiceLinks} />
+          </AnimatedSection>
+        )}
 
         {topic.quiz && topic.quiz.length > 0 && (
           <AnimatedSection>
