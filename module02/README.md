@@ -42,8 +42,22 @@ without changing the test itself: [paste test + error]"
 
 ## Exercises
 
-1. **Take 3 prompts you used last week and rewrite them using the 5-part formula**
+### Exercise 1: Rewrite 3 Prompts Using the 5-Part Formula
+Take 3 prompts you used recently and rewrite them using the 5-part formula.
 
-2. **Create a personal prompt template library in .claude/prompts/**
+**File**: [exercise1-prompts.md](exercise1-prompts.md)
 
-3. **Time yourself**: compare first-attempt success rate before vs after adopting the formula over 2 weeks
+---
+
+### Exercise 2: Create Personal Prompt Template Library
+Create a reusable prompt template library in `.claude/prompts/`.
+
+**Reference**: [exercise2-template-library.md](exercise2-template-library.md)
+**Templates**: [../.claude/prompts/](../.claude/prompts/)
+
+---
+
+### Exercise 3: Track Your Success Rate
+Time yourself: compare first-attempt success rate before vs after adopting the formula over 2 weeks.
+
+**File**: [exercise3-tracking.md](exercise3-tracking.md)
