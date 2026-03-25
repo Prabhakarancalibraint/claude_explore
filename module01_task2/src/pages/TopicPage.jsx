@@ -2,8 +2,11 @@ import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useEffect } from 'react'
-import { roadmapData } from '../data/roadmapData'
-import { Clock } from 'lucide-react'
+import { topics } from '../data/blockchainData'
+import InteractiveExercise from '../components/InteractiveExercise'
+import Quiz from '../components/Quiz'
+import CodeBlock from '../components/CodeBlock'
+import useProgress from '../hooks/useProgress'
 
 function AnimatedSection({ children }) {
   const [ref, inView] = useInView({
@@ -24,9 +27,17 @@ function AnimatedSection({ children }) {
   )
 }
 
-export default function TopicPage() {
+export default function TopicPage({ progress: progressHook }) {
   const { topicId } = useParams()
-  const topic = roadmapData[topicId]
+  const { completeTopic, completeExerciseTask, completeQuiz, getExerciseProgress, getTopicProgress } = useProgress()
+
+  const topic = topics.find(t => t.id === topicId)
+
+  useEffect(() => {
+    if (topic) {
+      completeTopic(topicId)
+    }
+  }, [topicId])
 
   if (!topic) {
     return (
@@ -42,10 +53,21 @@ export default function TopicPage() {
     )
   }
 
-  const topicKeys = Object.keys(roadmapData)
-  const currentIndex = topicKeys.indexOf(topicId)
-  const prevTopic = currentIndex > 0 ? topicKeys[currentIndex - 1] : null
-  const nextTopic = currentIndex < topicKeys.length - 1 ? topicKeys[currentIndex + 1] : null
+  const currentIndex = topics.findIndex(t => t.id === topicId)
+  const prevTopic = currentIndex > 0 ? topics[currentIndex - 1] : null
+  const nextTopic = currentIndex < topics.length - 1 ? topics[currentIndex + 1] : null
+
+  const topicProgress = getTopicProgress(topicId)
+  const completedTasks = topic.exercises?.[0]?.tasks?.map(t => t.id) || []
+  const exerciseProgress = getExerciseProgress(topic.id)
+
+  const handleTaskComplete = (exerciseId, taskId) => {
+    completeExerciseTask(exerciseId, taskId)
+  }
+
+  const handleQuizComplete = (topicId, score) => {
+    completeQuiz(topicId, score)
+  }
 
   return (
     <div className="topic-page">
@@ -55,7 +77,7 @@ export default function TopicPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          Module {currentIndex + 1}
+          Module {currentIndex + 1} of {topics.length}
         </motion.span>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -69,47 +91,62 @@ export default function TopicPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          {topic.description}
+          {topic.subtitle}
         </motion.p>
+        {topicProgress.completed && (
+          <motion.span
+            className="completed-badge-large"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+          >
+            ✓ Completed
+          </motion.span>
+        )}
       </div>
 
       <div className="topic-content">
-        {topic.sections.map((section, index) => (
+        {topic.sections && topic.sections.map((section, index) => (
           <AnimatedSection key={index}>
             <h2>{section.title}</h2>
-            <p>{section.content}</p>
+            {section.content.split('\n\n').map((paragraph, pIndex) => (
+              <p key={pIndex}>{paragraph}</p>
+            ))}
+            {section.code && <CodeBlock code={section.code} />}
           </AnimatedSection>
         ))}
 
-        {topic.exercises && (
+        {topic.quiz && topic.quiz.length > 0 && (
           <AnimatedSection>
-            <div className="exercise-box">
-              <h3>💪 Practice Exercise</h3>
-              {topic.exercises.map((exercise, index) => (
-                <div key={index}>
-                  <h4 style={{ margin: '1rem 0 0.5rem' }}>{exercise.title}</h4>
-                  <ul>
-                    {exercise.tasks.map((task, taskIndex) => (
-                      <li key={taskIndex}>{task}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <Quiz
+              questions={topic.quiz}
+              topicId={topicId}
+              onComplete={handleQuizComplete}
+            />
+          </AnimatedSection>
+        )}
+
+        {topic.exercises && topic.exercises.length > 0 && (
+          <AnimatedSection>
+            <InteractiveExercise
+              exercise={{ id: topic.id, title: topic.exercises[0].title }}
+              tasks={topic.exercises[0].tasks}
+              completedTasks={exerciseProgress}
+              onTaskComplete={handleTaskComplete}
+            />
           </AnimatedSection>
         )}
 
         <div className="topic-nav">
           {prevTopic ? (
-            <Link to={`/topic/${prevTopic}`}>
-              ← Previous: {roadmapData[prevTopic].title}
+            <Link to={`/topic/${prevTopic.id}`}>
+              ← Previous: {prevTopic.title}
             </Link>
           ) : (
             <span />
           )}
           {nextTopic ? (
-            <Link to={`/topic/${nextTopic}`}>
-              Next: {roadmapData[nextTopic].title} →
+            <Link to={`/topic/${nextTopic.id}`}>
+              Next: {nextTopic.title} →
             </Link>
           ) : (
             <Link to="/exercises">
