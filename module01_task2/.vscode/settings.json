@@ -1,0 +1,33 @@
+{
+  "solidity.compileUsingRemoteVersion": "v0.8.20",
+  "solidity.defaultCompiler": "remote",
+  "solidity.compilerRemappings": [
+    {
+      "prefix": "@openzeppelin",
+      "path": "./node_modules/@openzeppelin"
+    },
+    {
+      "prefix": "hardhat",
+      "path": "./node_modules/hardhat"
+    }
+  ],
+  "files.associations": {
+    "*.sol": "solidity"
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/cache": true,
+    "artifacts": true,
+    "typechain": true,
+    "typechain-types": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/cache": true,
+    "**/artifacts": true
+  }
+}

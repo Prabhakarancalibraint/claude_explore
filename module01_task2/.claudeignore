@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Coverage
+coverage/
+
+# Cache
+.cache/
+.vite/
+.eslintcache
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Test files (can be skipped for context)
+*.test.js
+*.test.jsx
+*.spec.js
+*.spec.jsx
+__tests__/
+
+# Package lock (large, generated)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Documentation (not needed in context)
+*.md
+!README.md
+!CLAUDE.md
+
+# Temporary files
+tmp/
+temp/
+*.tmp

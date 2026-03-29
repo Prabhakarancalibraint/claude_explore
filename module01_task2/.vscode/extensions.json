@@ -1,0 +1,43 @@
+{
+  "recommendations": [
+    "juanblanco.solidity",
+    "tintinweb.vscode-lll",
+    "ritwickdey.liveserver",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-typescript-next"
+  ],
+  "workspaceRecommendations": [
+    "hardhat-vscode.hardhat-vscode",
+    "animeclown.nomicfoundation-solidity-ambassador"
+  ],
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "juanblanco.solidity"
+    ]
+  },
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "files.associations": {
+      "*.sol": "solidity"
+    },
+    "solidity.remappings": [
+      "@openzeppelin/=node_modules/@openzeppelin/",
+      "hardhat/=node_modules/hardhat/"
+    ],
+    "[solidity]": {
+      "editor.defaultFormatter": "juanblanco.solidity"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+  }
+}

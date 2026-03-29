@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Blockchain Works - Blockchain Academy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">⬡</span>
+                Blockchain Academy
+            </a>
+            <ul class="nav-links">
+                <li><a href="what-is-blockchain.html">What is Blockchain?</a></li>
+                <li><a href="components.html">Components</a></li>
+                <li><a href="smart-contracts.html">Smart Contracts</a></li>
+                <li><a href="how-it-works.html">How it Works</a></li>
+                <li><a href="use-cases.html">Use Cases</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="content-page">
+        <div class="content-header">
+            <div class="container">
+                <span class="badge">Module 01</span>
+                <h1>How Blockchain Works</h1>
+                <p>A deep dive into the mechanics of blockchain - from transaction creation to block finalization.</p>
+            </div>
+        </div>
+
+        <div class="content-body">
+            <section class="content-section">
+                <h2>The Transaction Lifecycle</h2>
+                <p>Understanding how a transaction moves from initiation to finalization is key to grasping blockchain mechanics.</p>
+
+                <h3>Step-by-Step Process:</h3>
+                <ol>
+                    <li><strong>Transaction Creation:</strong> User initiates a transaction using a wallet, specifying recipient and amount</li>
+                    <li><strong>Signing:</strong> Transaction is signed with the sender's private key</li>
+                    <li><strong>Broadcast:</strong> Signed transaction is broadcast to the network</li>
+                    <li><strong>Mempool:</strong> Transaction enters the mempool (waiting area)</li>
+                    <li><strong>Selection:</strong> Miners/validators select transactions from mempool</li>
+                    <li><strong>Validation:</strong> Transaction is verified for validity</li>
+                    <li><strong>Inclusion:</strong> Transaction is included in a new block</li>
+                    <li><strong>Confirmation:</strong> Block is added to the chain, transaction is confirmed</li>
+                </ol>
+            </section>
+
+            <section class="content-section">
+                <h2>Transaction Validation</h2>
+                <p>Before any transaction is included in a block, it must pass several validation checks:</p>
+
+                <h3>Validation Criteria:</h3>
+                <ul>
+                    <li><strong>Signature Verification:</strong> Validates the sender actually authorized the transaction</li>
+                    <li><strong>Balance Check:</strong> Ensures sender has sufficient balance</li>
+                    <li><strong>Format Check:</strong> Verifies proper data format and encoding</li>
+                    <li><strong>Double-Spend Check:</strong> Confirms inputs haven't been spent already</li>
+                    <li><strong>Nonce Check:</strong> Ensures correct transaction ordering</li>
+                </ul>
+
+                <div class="info-box success">
+                    <strong>✓ Validation:</strong> Invalid transactions are rejected immediately and never enter the mempool. This protects the network from spam and malicious activity.
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Block Creation & Mining</h2>
+                <p>In Proof of Work blockchains like Bitcoin, creating new blocks requires computational work through a process called mining.</p>
+
+                <h3>The Mining Process:</h3>
+                <ol>
+                    <li>Transactions are selected from the mempool</li>
+                    <li>A Merkle tree is constructed from selected transactions</li>
+                    <li>The block header is assembled with:
+                        <ul>
+                            <li>Version number</li>
+                            <li>Previous block hash</li>
+                            <li>Merkle root</li>
+                            <li>Timestamp</li>
+                            <li>Difficulty target</li>
+                            <li>Nonce (variable)</li>
+                        </ul>
+                    </li>
+                    <li>Miners repeatedly change the nonce and hash the header</li>
+                    <li>When hash meets difficulty target, block is valid</li>
+                    <li>Winner broadcasts block to network</li>
+                </ol>
+
+                <div class="code-block">
+                    <code>
+// Mining concept (simplified)
+while (hash > target) {
+    nonce++;
+    hash = calculateHash(blockHeader + nonce);
+}
+// Block found! Hash: 0000abc123...
+// Reward: Newly minted coins + transaction fees
+                    </code>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>The Consensus Process</h2>
+                <p>Consensus ensures all nodes in the network agree on the same state of the blockchain, even when some nodes are faulty or malicious.</p>
+
+                <h3>Proof of Work (PoW) Consensus:</h3>
+                <p>In PoW, miners compete to solve a cryptographic puzzle. The first to find a valid hash wins the right to add the block.</p>
+
+                <h3>Proof of Stake (PoS) Consensus:</h3>
+                <p>In PoS, validators stake their cryptocurrency as collateral. The algorithm pseudo-randomly selects a validator based on their stake amount and other factors.</p>
+
+                <h3>Byzantine Fault Tolerance (BFT):</h3>
+                <p>Systems designed to continue functioning even when some nodes fail or act maliciously. Requires agreement from 2/3+ of honest nodes.</p>
+            </section>
+
+            <section class="content-section">
+                <h2>Network Propagation</h2>
+                <p>Once a block is created, it must be shared with the entire network for verification and addition to everyone's copy of the blockchain.</p>
+
+                <h3>How Propagation Works:</h3>
+                <ol>
+                    <li>Winning node broadcasts the new block to connected peers</li>
+                    <li>Peers validate the block independently</li>
+                    <li>Valid blocks are forwarded to their peers</li>
+                    <li>This continues until all nodes have the block</li>
+                    <li>Nodes update their local copy of the blockchain</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>🌐 Propagation Time:</strong> On Bitcoin, a new block typically propagates across the entire network within seconds. Larger blocks take longer.
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Blockchain Forks</h2>
+                <p>A fork occurs when the blockchain splits into two or more paths. This can happen due to software updates or disagreements in the community.</p>
+
+                <h3>Types of Forks:</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hard Fork</td>
+                            <td>Permanent split creating incompatible chains</td>
+                            <td>BTC → BCH, ETH → ETHW</td>
+                        </tr>
+                        <tr>
+                            <td>Soft Fork</td>
+                            <td>Backward-compatible protocol upgrade</td>
+                            <td>SegWit on Bitcoin</td>
+                        </tr>
+                        <tr>
+                            <td>Chain Reorganization</td>
+                            <td>Temporary fork where one chain becomes dominant</td>
+                            <td>Common during high network activity</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h2>Transaction Confirmations</h2>
+                <p>Confirmations represent the number of blocks added after a transaction block. More confirmations = higher certainty of transaction finality.</p>
+
+                <h3>Confirmation Process:</h3>
+                <ul>
+                    <li><strong>0 Confirmations:</strong> Transaction in mempool, not yet in a block</li>
+                    <li><strong>1 Confirmation:</strong> Transaction in the most recent block</li>
+                    <li><strong>6 Confirmations:</strong> Generally considered secure for large transactions</li>
+                </ul>
+
+                <div class="info-box warning">
+                    <strong>⚠️ Security Note:</strong> While 6 confirmations is standard for Bitcoin, some attacks (like 51% attacks) could potentially reverse transactions with few confirmations. Higher value transactions should wait for more confirmations.
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Block Finality</h2>
+                <p>Finality is the guarantee that a once-confirmed transaction cannot be reversed. Different consensus mechanisms offer varying finality guarantees.</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Blockchain</th>
+                            <th>Consensus</th>
+                            <th>Time to Finality</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bitcoin</td>
+                            <td>PoW</td>
+                            <td>~60 minutes (6 blocks)</td>
+                        </tr>
+                        <tr>
+                            <td>Ethereum</td>
+                            <td>PoS</td>
+                            <td>~12-15 minutes</td>
+                        </tr>
+                        <tr>
+                            <td>Solana</td>
+                            <td>PoH + PoS</td>
+                            <td>~400ms - 12 seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Cardano</td>
+                            <td>PoS</td>
+                            <td>~10 minutes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h2>Summary</h2>
+                <p>The blockchain works as a decentralized ledger system where:</p>
+                <ul>
+                    <li>Transactions are created, signed, and broadcast</li>
+                    <li>Miners/validators select and validate transactions</li>
+                    <li>Blocks are created through consensus mechanisms</li>
+                    <li>The network propagates and verifies new blocks</li>
+                    <li>Confirmations provide increasing security</li>
+                    <li>Forks allow protocol evolution</li>
+                </ul>
+            </section>
+
+            <div class="page-nav">
+                <a href="smart-contracts.html">← Previous: Smart Contracts</a>
+                <a href="use-cases.html">Next: Use Cases →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Blockchain Academy - Module 01</p>
+            <p>How Blockchain Works</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
