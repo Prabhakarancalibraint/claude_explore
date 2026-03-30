@@ -1,0 +1,25 @@
+{
+  "name": "claude-exercise",
+  "version": "1.0.0",
+  "description": "RWA Tokenization Platform - ERC-3643",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "clean": "hardhat clean"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/hardhat-upgrades": "^3.9.0",
+    "hardhat": "^2.19.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.2.0",
+    "ethers": "^6.11.1",
+    "dotenv": "^16.4.5"
+  }
+}

@@ -1,0 +1,61 @@
+#!/bin/bash
+# Module 11 - Parallel Claude Code Agents Script
+# Run two agents simultaneously in separate terminal sessions
+#
+# This script documents the commands needed to run the agents in parallel.
+# Execute each command in a separate terminal window/session.
+
+REPO_DIR="/home/xavier-praveen/Workspace/claude_exercise"
+WORKTREE_FEATURE="$REPO_DIR/.claude/worktrees/feature-rwa-property-token"
+WORKTREE_TESTS="$REPO_DIR/.claude/worktrees/feature-rwa-property-token-tests"
+
+echo "=== Module 11: Running Parallel Claude Code Agents ==="
+echo ""
+echo "IMPORTANT: Run these commands in SEPARATE terminal sessions simultaneously"
+echo ""
+
+echo "========================================="
+echo "TERMINAL 1: PropertyToken Contract Build"
+echo "========================================="
+echo ""
+echo "Navigate to feature worktree and run /rwa-tokenize:"
+echo ""
+echo "  cd $WORKTREE_FEATURE"
+echo "  claude"
+echo ""
+echo "  Then execute: /rwa-tokenize property"
+echo ""
+echo "This will scaffold PropertyToken.sol with:"
+echo "  - ERC-3643 (T-REX) compliance"
+echo "  - Fractional ownership"
+echo "  - ONCHAINID KYC"
+echo "  - India + UAE jurisdiction lock"
+echo ""
+
+echo "========================================="
+echo "TERMINAL 2: Test Suite Generation"
+echo "========================================="
+echo ""
+echo "Navigate to test worktree and run /write-tests:"
+echo ""
+echo "  cd $WORKTREE_TESTS"
+echo "  claude"
+echo ""
+echo "  Then execute: /write-tests PropertyToken"
+echo ""
+echo "This will generate comprehensive tests:"
+echo "  - Unit tests (mint, burn, transfer)"
+echo "  - ERC-3643 compliance tests"
+echo "  - Integration tests"
+echo "  - Gas benchmark tests"
+echo ""
+
+echo "========================================="
+echo "PARALLEL EXECUTION PATTERN: Feature + Tests"
+echo "========================================="
+echo ""
+echo "Both agents run simultaneously to maximize parallel development."
+echo "Worktree 1 builds the contract while Worktree 2 creates tests."
+echo ""
+echo "After both agents complete, run:"
+echo "  ./module11/merge_and_cleanup.sh"
