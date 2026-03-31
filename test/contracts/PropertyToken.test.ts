@@ -1,6 +1,6 @@
 import { ethers } from "hardhat";
 import { expect } from "chai";
-import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers";
+import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers.js";
 
 import { PropertyToken } from "../typechain-types/contracts/PropertyToken";
 import { IdentityRegistry } from "../typechain-types/contracts/IdentityRegistry";
